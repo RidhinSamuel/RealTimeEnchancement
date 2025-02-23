@@ -1,19 +1,123 @@
-.background-white{
-    color: whitesmoke;
-}
+
 .background-green{
     background-color: #41B06E;
 }
-
+.text-green{
+    color: #41B06E;
+}
 .spaced-lines  {
     font-size: 55px;
-    color: #41B06E;
-    font-weight: 700;
     line-height: 1.8; /* Adjust the value as needed */
 }
+.montserrat-700 {
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+.roboto-mono {
+    font-family: "Roboto Mono", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
 .content{
     /* color: #41B06E; */
     /* font-weight: 700; */
+    font-size: 20px;
     margin:0 auto 0 auto;
-    line-height: 2; 
+    line-height: 2.3; 
+}
+.navbar-brand, .nav-link{
+    font-size: 30px;
+}
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 37vh;
+}
+
+/* .arrow-icon {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 40px solid #63E6BE;
+    position: relative;
+    animation: bounce 2s infinite;
+} */
+
+.arrow-icon {
+    font-size: 10rem; /* Adjust size as needed */
+    font-weight: bolder;
+    font-style: italic;
+
+    color: #41B06E; /* Primary color */
+    animation: bounce 2s infinite;
+}
+/* 
+.arrow-icon::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: -20px;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 40px solid rgba(99, 230, 190, 0.5);
+} */
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+.navbar{
+    background-color: white;
+}
+.submit{
+    background-color: #41B06E;
+    border-radius: 10%;
+    padding: 10px;
+    color: white;
+    border:none;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Add transition */
+
+}
+.submit:hover{
+    background-color: white;
+    color: #41B06E;
+    border: #41B06E 2px solid;
+}
+.upload{
+    color: #41B06E;
+    border: #41B06E 2px solid;
+    border-radius: 10%;
+    cursor: pointer;
+    margin-right: 44px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Add transition */
+}
+.upload:hover {
+    background-color: #41B06E;
+    color: white;
+}
+.form{
+    margin-top: 35px;
+}
+.section-style {
+    height: 70vh; /* Adjust the height as needed */
+    margin-bottom: 20px; /* Adjust the margin-bottom as needed */
+}
+.row{
+    margin-top: 60px;
 }

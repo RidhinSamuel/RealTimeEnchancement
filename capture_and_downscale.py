@@ -1,6 +1,6 @@
 import cv2
 import os
-from tqdm import tqdm
+# from tqdm import tqdm
 
 os.makedirs("HR", exist_ok=True)
 os.makedirs("LR", exist_ok=True)

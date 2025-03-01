@@ -57,6 +57,65 @@ def enhance_image():
     enhanced_image.save(img_io, 'PNG')
     img_io.seek(0)
     return send_file(img_io, mimetype='image/png')
+import cv2
+import os
+
+# Ensure "results" folder exists
+os.makedirs("results", exist_ok=True)
+
+# Define output video file name and FPS
+output_video_path = "results/combined_video.mp4"
+fps = 30  # Adjust as needed
+
+# Get list of HR and LR frames and sort them
+hr_frames = sorted([f for f in os.listdir("HR") if f.endswith(".png")])
+lr_frames = sorted([f for f in os.listdir("LR") if f.endswith(".png")])
+
+if not hr_frames or not lr_frames:
+    print("Error: HR or LR frames not found!")
+    exit()
+
+# Read the first frame to determine dimensions
+first_hr = cv2.imread(os.path.join("HR", hr_frames[0]))
+first_lr = cv2.imread(os.path.join("LR", lr_frames[0]))
+
+hr_height, hr_width, _ = first_hr.shape
+lr_height, lr_width, _ = first_lr.shape
+
+# Resize LR to match HR height (keep aspect ratio)
+scale_factor = hr_height / lr_height
+new_lr_width = int(lr_width * scale_factor)
+lr_resized = cv2.resize(first_lr, (new_lr_width, hr_height), interpolation=cv2.INTER_CUBIC)
+
+# Define video writer
+combined_width = new_lr_width + hr_width
+fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Or 'XVID' for AVI format
+out = cv2.VideoWriter(output_video_path, fourcc, fps, (combined_width, hr_height))
+
+print("Generating combined video...")
+
+# Iterate over frames
+for lr_name, hr_name in zip(lr_frames, hr_frames):
+    lr_frame = cv2.imread(os.path.join("LR", lr_name))
+    hr_frame = cv2.imread(os.path.join("HR", hr_name))
+
+    # Resize LR to match HR height
+    lr_resized = cv2.resize(lr_frame, (new_lr_width, hr_height), interpolation=cv2.INTER_CUBIC)
+
+    # Concatenate images side by side
+    combined_frame = cv2.hconcat([lr_resized, hr_frame])
+
+    # Write to video
+    out.write(combined_frame)
+
+    # Display the combined frame
+    cv2.imshow("LR vs HR Video", combined_frame)
+    if cv2.waitKey(25) & 0xFF == ord('q'):
+        break
+
+out.release()
+cv2.destroyAllWindows()
+print(f"Combined video saved in {output_video_path}")
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

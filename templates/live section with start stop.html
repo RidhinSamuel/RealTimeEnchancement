@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"  href="{{ url_for('static', filename='style.css') }}">
+    <title>Enchancement</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg p-4  sticky-top">
+        <div class="container-fluid ">
+            <a class="navbar-brand text-green" href="#Home">Home</a>
+            <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon "></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ms-auto gap-3 text-green mr-3">
+                    <a class="nav-link text-green" aria-current="page" href="#Photo">Photo</a>
+                    <a class="nav-link text-green " href="#Video">Video</a>
+                    <a class="nav-link text-green" href="#Live">Live</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section id="Home" class="p-4">
+        <div class="row d-flex align-items-center p-2">
+            <div class="col-md-5">
+                <h3 class="spaced-lines montserrat-700">
+                    Real Time<br>
+                    Video Enhancement<br>
+                    Using <span class="text-green">ESRGAN</span>
+                </h3>
+            </div>
+            <div class="col-md-7">
+                <p class="content roboto-mono-700">
+                    ESRGAN (Enhanced Super-Resolution Generative Adversarial Networks) is a state-of-the-art method for image and video super-resolution. It enhances the resolution of images and videos, making them clearer and more detailed. ESRGAN uses deep learning techniques to achieve high-quality results, making it a powerful tool for various applications, including video enhancement.
+                </p>
+            </div>
+        </div>
+    </section>
+    <div class="icon-container">
+        <div class="arrow-icon">&#8595;</div>
+    </div>
+    <section id="Photo" class="p-4 section-style">
+        <div class="row d-flex align-items-center p-2">
+            <div class="col-md-5">
+                <h3 class="spaced-lines montserrat-700">
+                    Photo <br>
+                    Enhancement<br>
+                    Using <span class="text-green">ESRGAN</span>
+                </h3>
+            </div>
+            <div class="col-md-7">
+                <p class="content roboto-mono-700">
+                    <span class="text-green " >ESRGAN</span> uses deep learning to upscale images, improving their resolution and clarity. This method is particularly effective for restoring details in low-resolution photos, making them look sharper and more detailed.
+                </p>
+                <form action="/photo" method="post" class="form  d-flex  justify-content-center">
+                    <label for="file-upload" class="upload p-3 ">
+                        <i class="fa-solid fa-upload mr-5"> U p l o a d</i>
+                    </label>
+                    <input type="file" id="file-upload" name="file" style="display: none;">
+                    <button type="submit" class="submit montserrat-700 p-3">Submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section id="Video" class="p-4 section-style">
+        <div class="row d-flex align-items-center p-2">
+            <div class="col-md-5">
+                <h3 class="spaced-lines montserrat-700">
+                    Video <br>
+                    Enhancement<br>
+                    Using <span class="text-green">ESRGAN</span>
+                </h3>
+            </div>
+            <div class="col-md-7">
+                <p class="content roboto-mono-700">
+                    ESRGAN takes each frame of a video and applies deep learning techniques to upscale it while preserving fine details and textures. It enhances resolution by reconstructing high-frequency features, making the video appear sharper and more realistic. To maintain high performance, optimizations like model pruning, tensor acceleration, and efficient GPU utilization are used.
+                </p>
+                <form action="/video" method="post" class="form d-flex justify-content-center">
+                    <label for="file-upload" class="upload p-3">
+                        <i class="fa-solid fa-upload  montserrat-700"> U p l o a d</i>
+                    </label>
+                    <input type="file" id="file-upload" name="file" style="display: none;">
+                    <button type="submit" class="submit montserrat-700 p-3">Submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section id="Live" class="p-4 section-style">
+        <div class="row d-flex align-items-center p-2">
+            <div class="col-md-5">
+                <h3 class="spaced-lines montserrat-700">
+                    Live <br>
+                    Enhancement<br>
+                    Using <span class="text-green">ESRGAN</span>
+                </h3>
+            </div>
+            <div class="col-md-7">
+                <p class="content roboto-mono-700">
+                    ESRGAN takes each frame of a video and applies deep learning techniques to upscale it while preserving fine details and textures. It enhances resolution by reconstructing high-frequency features, making the video appear sharper and more realistic. To maintain high performance, optimizations like model pruning, tensor acceleration, and efficient GPU utilization are used.
+                </p>
+                <form action="/live" method="post" class="form d-flex justify-content-center">
+                    <button type="submit" class="submit montserrat-700 p-4">Live</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="Live" class="p-4 section-style">
+        <div class="row d-flex align-items-center p-2">
+            <div class="col-md-5">
+                <h3 class="spaced-lines montserrat-700">
+                    Live <br>
+                    Enhancement<br>
+                    Using <span class="text-green">ESRGAN</span>
+                </h3>
+            </div>
+            <div class="col-md-7">
+                <p class="content roboto-mono-700">
+                    ESRGAN takes each frame of a video and applies deep learning techniques to upscale it while preserving fine details and textures.
+                </p>
+                <div id="video-container" class="video-container d-flex justify-content-between" style="display: none !important;">
+                    <div class="video-box">
+                        <h4 class="text-green">Low Resolution</h4>
+                        <img src="{{ url_for('video_feed_lr') }}" width="300" height="225">
+                    </div>
+                    <div class="video-box">
+                        <h4 class="text-green">High Resolution</h4>
+                        <img src="{{ url_for('video_feed_hr') }}" width="300" height="225">
+                    </div>
+                </div>
+                <form class="form d-flex justify-content-center">
+                    <button type="button" id="liveButton" class="submit montserrat-700 p-4" onclick="toggleLiveStream()">Live</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script>
+        function toggleLiveStream() {
+            const videoContainer = document.getElementById('video-container');
+            const liveButton = document.getElementById('liveButton');
+            
+            if (videoContainer.style.display === 'none' || videoContainer.style.display === '') {
+                videoContainer.style.display = 'flex';
+                liveButton.textContent = 'Stop';
+                fetch('/start_stream', { method: 'POST' });
+            } else {
+                videoContainer.style.display = 'none';
+                liveButton.textContent = 'Live';
+                fetch('/stop_stream', { method: 'POST' });
+            }
+        }
+    </script>
+    <script src="https://kit.fontawesome.com/c3882a861e.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

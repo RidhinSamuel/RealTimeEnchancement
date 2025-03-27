@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"  href="{{ url_for('static', filename='style.css') }}">
     <title>Enchancement</title>
 </head>
 <body>
@@ -58,13 +58,14 @@
                 <p class="content roboto-mono-700">
                     <span class="text-green " >ESRGAN</span> uses deep learning to upscale images, improving their resolution and clarity. This method is particularly effective for restoring details in low-resolution photos, making them look sharper and more detailed.
                 </p>
-                <form action="/photo" method="post" class="form  d-flex  justify-content-center">
+                <form action="/photo" method="post" class="form  d-flex  justify-content-center" enctype="multipart/form-data">
                     <label for="file-upload" class="upload p-3 ">
                         <i class="fa-solid fa-upload mr-5"> U p l o a d</i>
                     </label>
-                    <input type="file" id="file-upload" name="file" style="display: none;">
+                    <input type="file" id="file-upload" name="file" style="display: none;" accept="image/png, image/jpeg" value="">
                     <button type="submit" class="submit montserrat-700 p-3">Submit</button>
                 </form>
+                <p id="uploadedFileName" class="text-green text-center mt-3"></p>
             </div>
         </div>
     </section>
@@ -105,12 +106,63 @@
                     ESRGAN takes each frame of a video and applies deep learning techniques to upscale it while preserving fine details and textures. It enhances resolution by reconstructing high-frequency features, making the video appear sharper and more realistic. To maintain high performance, optimizations like model pruning, tensor acceleration, and efficient GPU utilization are used.
                 </p>
                 <form action="/live" method="post" class="form d-flex justify-content-center">
-                    
                     <button type="submit" class="submit montserrat-700 p-4">Live</button>
                 </form>
             </div>
         </div>
     </section>
+
+    <!-- <section id="Live" class="p-4 section-style">
+        <div class="row d-flex align-items-center p-2">
+            <div class="col-md-5">
+                <h3 class="spaced-lines montserrat-700">
+                    Live <br>
+                    Enhancement<br>
+                    Using <span class="text-green">ESRGAN</span>
+                </h3>
+            </div>
+            <div class="col-md-7">
+                <p class="content roboto-mono-700">
+                    ESRGAN takes each frame of a video and applies deep learning techniques to upscale it while preserving fine details and textures.
+                </p>
+                <div class="video-container d-flex justify-content-between">
+                    <div class="video-box">
+                        <h4 class="text-green">Low Resolution</h4>
+                        <img src="{{ url_for('video_feed_lr') }}" width="300" height="225">
+                    </div>
+                    <div class="video-box">
+                        <h4 class="text-green">High Resolution</h4>
+                        <img src="{{ url_for('video_feed_hr') }}" width="300" height="225">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <script>
+        document.getElementById('photoForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            
+            try {
+                const response = await fetch('/photo', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.text();
+                document.getElementById('uploadedFileName').textContent = `Uploaded: ${result}`;
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+        
+        // Show selected filename when file is chosen
+        document.getElementById('file-upload').addEventListener('change', (e) => {
+            const fileName = e.target.files[0]?.name || 'No file selected';
+            document.getElementById('uploadedFileName').textContent = `Selected: ${fileName}`;
+        });
+        </script>
     <script src="https://kit.fontawesome.com/c3882a861e.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

@@ -127,3 +127,14 @@ body {
 .row{
     margin-top: 60px;
 }
+
+.video-box {
+    border: 2px solid #41B06E;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+.video-box img {
+    border-radius: 4px;
+}
